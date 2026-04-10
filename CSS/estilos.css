@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
-
+/*Colores de la maqueta*/
 html{
   --bg-color-200: hsl(214, 25%, 3%);
   --bg-color-200-75: hsla(214, 25%, 11%, 0.75);
@@ -9,10 +9,21 @@ html{
   --accent-color-400: hsl(2, 86%, 56%);
   --accent-color-500: hsl(0, 100%, 78%);
 
+  /* Fuentes y tamaños */
   --txt-heading: "Bebas Neue", sans-serif;
   --txt-base: "Nunito Sans", sans-serif;
+  --contenedor-sz: min(64rem, 100%);
     
 }
+
+/* Reseteo Global */
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+
 
 body{
 background-color: var(--bg-200);
@@ -22,9 +33,100 @@ line-height: 1.5;
 }
 
 h1,
-h2{
+h2,
+h3{
     font-family: var(--txt-heading);
+}
+
+/* Estilos generales */
+.contenedor-header, .contenedor-productos, .contenedor-header{
+  width: 24rem;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+/* Flexbox para el header */
+header{
+  background-color: var(--txt-heading);
+}
+
+.contenedor-header{
+  width: min(62rem, 100%);
+  margin: 0 auto;
+  padding: 1rem;
+  padding: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contenedor-header ul{
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+header h1{
+  color: var(--accent-color-400);
+}
+
+/* Bienvenida */
+.bienvenida{
+  min-height: 45rem;
+  background-image: url('../img/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+
+
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+.contenedor-bienvenida{
+  background-color: var(--bg-color-200-75);
+  padding: 2rem 1rem;
+}
+
+.contenedor-bienvenida h1, .contenedor-bienvenida p{
+  margin: 0;
 }
 
 
 
+
+.contenedor-productos{
+  border: 0.2rem solid var(--accent-color-400);
+  border-radius: 1rem;
+  width: min(32rem, 100%);
+  box-sizing: border-box;
+
+}
+
+.contenedor-productos:hover{
+  border: 0.2rem solid var(--accent-color-500);
+ 
+  cursor: pointer;
+
+
+}
+
+img{
+  width: 100%;
+  border-radius: 1rem;
+
+}
+
+button:hover{
+  background-color: var(--accent-color-500);
+  color: var(--bg-color-400);
+  cursor: pointer;
+  
+}
