@@ -12,7 +12,7 @@ html{
   /* Fuentes y tamaños */
   --txt-heading: "Bebas Neue", sans-serif;
   --txt-base: "Nunito Sans", sans-serif;
-  --contenedor-sz: min(64rem, 100%);
+  --contenedor-sz: min(80rem, 100%);
     
 }
 
@@ -26,6 +26,7 @@ padding: 0;
 
 
 body{
+  
 background-color: var(--bg-200);
 color: var(--text-color);
 font-family: var(--txt-base);
@@ -38,12 +39,25 @@ h3{
     font-family: var(--txt-heading);
 }
 
+body {
+    background-color: var(--bg-color-200);
+    color: var(--text-color);
+    font-family: var(--txt-base);
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    font-family: var(--txt-heading);
+}
+
 /* Estilos generales */
 .contenedor-header, .contenedor-productos, .contenedor-header{
-  width: 24rem;
+  width: var(--contenedor-sz);
   margin: 1rem auto;
   padding: 1rem;
 }
+
+
 
 /* Flexbox para el header */
 header{
@@ -100,33 +114,106 @@ header h1{
 }
 
 
+/* Catalogo */
 
+.seleccion-catalogo h1{
+  color: var(--accent-color-400);
+  margin: 0.1;
+  text-align: center;
+}
+
+.seleccion-catalogo{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
 
 .contenedor-productos{
-  border: 0.2rem solid var(--accent-color-400);
-  border-radius: 1rem;
-  width: min(32rem, 100%);
-  box-sizing: border-box;
-
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+  margin:0 auto;
 }
 
-.contenedor-productos:hover{
-  border: 0.2rem solid var(--accent-color-500);
- 
-  cursor: pointer;
-
-
+.contenedor-productos article{
+  background-color: var(--bg-color-400);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-radius: 0.5rem;
+  gap: 0.5rem ;
 }
 
-img{
+.contenedor-productos img{
   width: 100%;
-  border-radius: 1rem;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
+.contenedor-productos article:hover{
+  border: 0.2rem solid var(--accent-color-400);
+ transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+/* Botones del catalogo */
+.btn-fill{
+font-family: var(--txt-base);
+font-size: 1rem;
+background-color: var(--accent-color-400);
+padding: 0.5rem 1rem;
+border-radius: 0.5rem;
+border: 0.2rem solid var(--accent-color-400);
+}
+.btn-fill:hover{
+  box-shadow: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-outline{
+font-family: var(--txt-base);
+font-size: 1rem;
+background-color: var(--accent-color-200);
+padding: 0.5rem 1rem;
+border-radius: 0.5rem;
+border: 0.2rem solid var(--accent-color-400);
 
 }
 
-button:hover{
-  background-color: var(--accent-color-500);
-  color: var(--bg-color-400);
+.btn-outline:hover{
+  background-color: var(--accent-color-400);
+  color: var(--accent-color-200);
+  border: none;
+  transition: 0.3s;
   cursor: pointer;
-  
+}
+
+
+
+/* footer */
+
+.contenedor-footer{
+  width: var(--contenedor-sz);
+  padding: 2rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+}
+
+.contenedor-footer h1{
+  color: var(--accent-color-400);
+}
+
+.contenedor-footer ul{
+list-style: none;
+}
+.contenedor-footer:last-child{
+align-self: flex-end;
 }
