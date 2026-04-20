@@ -3,6 +3,7 @@
 html{
   --bg-color-200: hsl(214, 25%, 3%);
   --bg-color-200-75: hsla(214, 25%, 11%, 0.75);
+  --bg-color-200-95: hsla(214, 25%, 11%, 0.95);
   --bg-color-400: hsl(214, 20%, 16%);
   --text-color: hsl(215, 25%, 90%);
   --accent-color-200:  hsl(214, 75%, 20%);
@@ -12,7 +13,7 @@ html{
   /* Fuentes y tamaños */
   --txt-heading: "Bebas Neue", sans-serif;
   --txt-base: "Nunito Sans", sans-serif;
-  --contenedor-sz: min(65rem, 100% -4rem);
+  --contenedor-sz: min(75rem, 100% );
     
 }
 
@@ -67,31 +68,32 @@ header{
 
 .contenedor-header{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 auto;
   padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 
 .contenedor-header ul{
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   transition: 0.2s;
+  font-size: 1.5rem;
 }
 
-.nav-btn{
+.nav-link{
   padding: 0.45rem 1rem;
-  border: 1px solid var(--accent-color-400);
-  border-radius: 6px;
   color: var(--text-color);
   font-family: var(--txt-heading);
 
 }
 
-.nav-btn:hover {
+.nav-link:hover {
   background: var(--accent-color-500);
   border-color: var(--accent-color-500);
   color: var(--text-color-light);
@@ -100,27 +102,29 @@ header{
 
 
 /* Bienvenida */
-.bienvenida{
-  min-height: 45rem;
+.bienvenida,.seleccion-quienes{
+  min-height: 20rem;
+  width: var(--contenedor-sz - 4rem);
   background-image: url('../img/background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-
-
-
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   flex-direction: column;
   text-align: center;
+  background-attachment: fixed; 
 }
 
 
-.contenedor-bienvenida{
+.contenedor-bienvenida,.contenedor-quienes{
+  display: flex;
+  flex-direction: column;
+  
   background-color: var(--bg-color-200-75);
-  padding: 2rem 1rem;
+  width: 100%;
+  padding: 3rem;
 }
 
 .contenedor-bienvenida h1, .contenedor-bienvenida p{
@@ -140,8 +144,7 @@ header{
 
 .seleccion-catalogo{
   width: var(--contenedor-sz);
-  max-width: 90rem;
-  padding: 0;
+  padding: 4rem 0;
   margin: 0 auto;
 }
 
@@ -149,12 +152,14 @@ header{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 20rem));
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
+  width: 90%; 
+  margin: 0 auto;
 }
 
 .contenedor-productos article{
   background-color: var(--bg-color-400);
-  padding: 1rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -172,7 +177,7 @@ header{
 
 .contenedor-productos article:hover{
   border: 0.2rem solid var(--accent-color-400);
- transform: scale(1.05);
+  transform: scale(1.05);
   transition: 0.3s;
 }
 
@@ -209,8 +214,27 @@ border: 0.2rem solid var(--accent-color-400);
   border: none;
   transition: 0.3s;
   cursor: pointer;
-}
+  }
 
+  /* Quienes somos */
+  .seleccion-quienes{
+    width: var(--contenedor-sz);
+    min-height: 60vh;
+    border: 0.1rem solid var(--bg-color-200-95);
+    border-radius: 1.5rem;
+    margin: 0 auto;
+    padding: 3rem;
+    background-attachment: scroll;
+  }
+
+  .contenedor-quienes{
+    background-color: var(--bg-color-200-95);
+    border: 0.1rem solid var(--accent-color-400);
+    border-radius: 1.5rem ;
+    padding: 1rem;
+    gap: 1rem;
+
+  }
 
 
 /* footer */
@@ -218,18 +242,21 @@ border: 0.2rem solid var(--accent-color-400);
 
 .contenedor-footer {
     width: var(--contenedor-sz);
-    margin: 0 auto;
-    padding: 1rem;   
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    margin: 0 auto;
+    padding: 0rem;  
+    gap:1rem;
+    min-height: 100vh;
 }
 .contenedor-footer ul {
     list-style: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
-    padding: 0;
+    font-family: var(--txt-heading);
 }
 
 .txt-footer {
@@ -237,3 +264,38 @@ border: 0.2rem solid var(--accent-color-400);
     text-align: right;
     margin: 0;
 }
+
+
+@media (min-width: 768px) {
+  .contenedor-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .contenedor-productos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .contenedor-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  
+  .contenedor-footer ul {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+ 
+  
+  .contenedor-productos {
+  
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); 
+
+  }
+}
+
+
