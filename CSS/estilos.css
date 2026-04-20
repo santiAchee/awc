@@ -5,14 +5,14 @@ html{
   --bg-color-200-75: hsla(214, 25%, 11%, 0.75);
   --bg-color-400: hsl(214, 20%, 16%);
   --text-color: hsl(215, 25%, 90%);
-  --accent-color-200: hsl(24, 43%, 7%);
-  --accent-color-400: hsl(2, 86%, 56%);
-  --accent-color-500: hsl(0, 100%, 78%);
+  --accent-color-200:  hsl(214, 75%, 20%);
+  --accent-color-400:  hsl(214, 89%, 36%);
+  --accent-color-500:  hsl(214, 85%, 55%);
 
   /* Fuentes y tamaños */
   --txt-heading: "Bebas Neue", sans-serif;
   --txt-base: "Nunito Sans", sans-serif;
-  --contenedor-sz: min(80rem, 100%);
+  --contenedor-sz: min(75rem, 100%);
     
 }
 
@@ -23,7 +23,17 @@ margin: 0;
 padding: 0;
 }
 
+/* Estilos de Enlaces */
+a:link,
+a:visited {
+  color: var(--accent-color-400);
+  text-decoration: none;
+}
 
+a:hover,
+a:active {
+  color: var(--accent-color-500);
+}
 
 body{
   
@@ -50,35 +60,41 @@ h1, h2, h3 {
     font-family: var(--txt-heading);
 }
 
-/* Estilos generales */
-.contenedor-header, .contenedor-productos, .contenedor-header{
-  width: var(--contenedor-sz);
-  margin: 1rem auto;
-  padding: 1rem;
-}
-
-
-
 /* Flexbox para el header */
 header{
   background-color: var(--txt-heading);
 }
 
 .contenedor-header{
-  width: min(62rem, 100%);
+  width: 100%;
   margin: 0 auto;
   padding: 1rem;
-  padding: 2rem;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+
 .contenedor-header ul{
   list-style: none;
   display: flex;
   gap: 1rem;
+  transition: 0.2s;
+}
+
+.nav-btn{
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--accent-color-400);
+  border-radius: 6px;
+  color: var(--text-color);
+  font-family: var(--txt-heading);
+
+}
+
+.nav-btn:hover {
+  background: var(--accent-color-500);
+  border-color: var(--accent-color-500);
+  color: var(--text-color-light);
 }
 
 header h1{
@@ -123,9 +139,9 @@ header h1{
 }
 
 .seleccion-catalogo{
-  margin: 0;
+  width: var(--contenedor-sz);
   padding: 0;
-  width: 100%;
+  margin: 0 auto;
 }
 
 .contenedor-productos{
@@ -156,9 +172,10 @@ header h1{
 .contenedor-productos article:hover{
   border: 0.2rem solid var(--accent-color-400);
  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
 }
+
+
 
 /* Botones del catalogo */
 .btn-fill{
@@ -197,23 +214,35 @@ border: 0.2rem solid var(--accent-color-400);
 
 /* footer */
 
+footer {
+
+  background: var(--bg-color-200-75);
+  color: var(--text-color-faded);
+}
+
 .contenedor-footer{
-  width: var(--contenedor-sz);
+  width: 100%;
   padding: 2rem;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-
+  display: grid;
+  gap: 2rem
 }
 
 .contenedor-footer h1{
   color: var(--accent-color-400);
+  display: block;
 }
 
 .contenedor-footer ul{
+  font-family: var(--txt-base);
 list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.6rem;
+align-items: center;
 }
-.contenedor-footer:last-child{
-align-self: flex-end;
+
+.contenedor-footer p{
+  align-items: flex-end;
+  font-family: var(--txt-base);
 }
