@@ -369,7 +369,69 @@ background: var(--bg-color-400);
     margin: 0;
 }
 
+/* MEdia queris celular horizontal */
+@media (min-width: 600px) {
+  /* Catálogo */
+  .contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .contenedor-productos h2 {
+    font-size: 1rem;
+    line-height: 1.1;
+  }
+  .contenedor-productos .producto-marca {
+    font-size: 0.7rem;
+  }
+  .btn-fill, .btn-outline {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
+  .contenedor-productos img {
+    aspect-ratio: 16 / 9; 
+    object-fit: cover;
+  }
 
+
+
+
+  /* producto */
+  .seleccion-producto{
+    margin:0 auto;
+    padding: 0;
+  }
+  .contenedor-galeria{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 120rem;
+    gap:1rem;
+    margin: 0 auto;
+  }
+  .contenedor-galeria img{
+    width:100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+
+}
+.producto-specs,
+.producto-acciones
+{
+width: 80%;
+margin: 0 auto;
+}
+
+/* footer */
+.contenedor-footer ul {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+/* media query tablet vertical */
 @media (min-width: 768px) {
   .contenedor-header {
     flex-direction: row;
@@ -404,10 +466,7 @@ background: var(--bg-color-400);
     text-align: left;
   }
   
-  .contenedor-footer ul {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
+  
 
 }
 
