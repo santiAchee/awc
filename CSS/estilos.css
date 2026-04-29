@@ -238,7 +238,6 @@ border: 0.2rem solid var(--accent-color-400);
 
   /* Producto */
  .seleccion-producto{
-  max-width: 90%;
   margin: 0 auto;
   padding: 1rem;
   display: flex;
@@ -256,6 +255,7 @@ border: 0.2rem solid var(--accent-color-400);
 }
 .contenedor-galeria img{
 width: 90%;
+margin: 0 auto;
 aspect-ratio: 4/3;
 object-fit: cover;
 border-radius: 1.5rem;
