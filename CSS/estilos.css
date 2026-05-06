@@ -438,7 +438,7 @@ margin: 0 auto;
 }
 
 /* media query tablet vertical */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 800px) {
   .contenedor-header {
     flex-direction: row;
     justify-content: space-between;
@@ -464,6 +464,8 @@ margin: 0 auto;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
   }
+
+
   
   /* media query footer */
   .contenedor-footer {
@@ -480,7 +482,10 @@ margin: 0 auto;
   }
   
   
-
+  /* body quienes */
+  .body-quienes{
+  padding-bottom: 15rem;
+  }
 }
 
 @media (min-width: 1024px) {
