@@ -59,6 +59,16 @@ body {
     line-height: 1.5;
 }
 
+.sr-only{
+position: absolute;
+top: -1000px;
+left: -1000px;
+display: block;
+width: 1px;
+height: 1px;
+overflow: hidden;
+}
+
 
 
 /* Flexbox para el header */
@@ -373,6 +383,25 @@ background: var(--bg-color-400);
 }
 
 
+a.contacto:link,
+a.contacto:visited {
+  background-image: url('../img/icon_whattsapp.svg');
+  display: inline-block;
+  width: 2.5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  aspect-ratio: 1;
+  
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+
+}
+
+
+
+
+
 
 
 /* MEdia queris celular horizontal */
@@ -558,4 +587,5 @@ margin: 0 auto;
         position: relative; 
     }
 }
+
 
