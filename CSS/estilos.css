@@ -57,6 +57,7 @@ body {
     color: var(--text-color);
     font-family: var(--txt-base);
     line-height: 1.5;
+    padding-top: 10rem;
 }
 
 .sr-only{
@@ -83,9 +84,19 @@ header{
   align-items: center;
   margin: 0 auto;
   padding: 1rem;
+
+  position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1000;
+
+    background-color: var(--bg-color-200);
+    backdrop-filter: blur(15px);
+    border: 0.1rem solid var(--accent-color-400);
+    border-radius: 3rem;
+    box-shadow: 0 10px 30px var(--bg-color-400);
 }
-
-
 .contenedor-header ul{
   list-style: none;
   display: flex;
@@ -96,19 +107,45 @@ header{
   font-size: 1.5rem;
 }
 
+
+.htech-logo{
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-right: 15px;
+  letter-spacing: 1px;
+}
+
 .nav-link{
   padding: 0.45rem 1rem;
   color: var(--text-color);
   font-family: var(--txt-heading);
+ 
 
 }
 
-.nav-link:hover {
-  border: solid 0.1rem var(--accent-color-400);
-  border-radius: 5rem;
-  color: var(--text-color-light);
+
+.nav-link :hover{
+  background-color: var(--accent-color-200);
+  color: var(--text-color);
+  box-shadow: inset 0 0 15px var(--accent-color-200);
+  transform: translateY(-3px);
   
+  border-radius: 3rem;
 }
+
+.htech-nav-label{
+  font-family: var(--txt-heading);
+  padding: 5px 12px;
+  background: var(--bg-200);
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 6px;
+
+}
+
+
+
+
 
 
 
@@ -126,6 +163,8 @@ header{
   flex-direction: column;
   text-align: center;
   background-attachment: fixed; 
+
+
 }
 
 
@@ -133,7 +172,7 @@ header{
   display: flex;
   flex-direction: column;
   
-  background-color: var(--bg-color-200-75);
+  background-color: var(--bg-color-200-95);
   width: 100%;
   padding: 3rem;
 }
@@ -471,6 +510,7 @@ margin: 0 auto;
   .contenedor-header {
     flex-direction: row;
     justify-content: space-between;
+    
   }
   
   .contenedor-productos {
