@@ -257,8 +257,6 @@ border: 0.2rem solid var(--accent-color-400);
 
 .btn-outline:hover{
   background-color: var(--accent-color-400);
-  color: var(--accent-color-200);
-  border: none;
   transition: 0.3s;
   cursor: pointer;
   }
