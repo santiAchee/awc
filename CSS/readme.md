@@ -1,2 +1,0 @@
-Este proyecto es una plataforma de comercio electrónico de última generación diseñada específicamente para entusiastas del hardware
- y periféricos de alto rendimiento. Desde teclados mecánicos "de autor" hasta ratones con tasas de sondeo ultra rápidas
