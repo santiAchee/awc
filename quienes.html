@@ -6,6 +6,7 @@
     <meta   name="color-scheme" content="Light dark">
     <title>Aplicaiones Web Cliente</title>
     <link rel="stylesheet" href="./CSS/estilos.css">
+    <script src="../js/menu.js" defer></script>
 <body>
     
     
@@ -13,7 +14,13 @@
     <header>
         <div class="contenedor-header">
         <h1 class="htech-logo">Htech</h1>
-        <nav >  
+        
+        <button class="menu-btn" aria-label="Ingresar al menu principal" aria-controls="primary-navigation" aria-expanded="false"> <span class="sr-only">Menu principal</span></button>
+
+
+
+
+        <nav id="primary-navigation" data-visible="false" class="primary-navigation">  
             <ul>
                 <li class="nav-link" rel="noopener noreferrer"><a href="index.html"><span class="htech-nav-label">Inicio</span></a></li>
                 <li class="nav-link" rel="noopener noreferrer"><a href="#"><span class="htech-nav-label">carrito</span></a></li>
