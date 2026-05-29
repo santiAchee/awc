@@ -95,6 +95,9 @@ header {
   border: 0.1rem solid var(--accent-color-400);
   border-radius: 3rem;
   box-shadow: 0 10px 30px var(--bg-color-200-75);
+
+
+
 }
 
 
@@ -111,8 +114,11 @@ header {
   z-index: 9999;
   cursor: pointer;
   border-radius: 0.1rem;
-  transition: background-color 0.2s ease,
-              transform 0.2s ease;
+  
+  transition:  transform 0.8s ease;
+
+  position: relative;
+
 }
 
 .menu-btn[aria-expanded="true"] {
@@ -141,21 +147,43 @@ header {
 .primary-navigation {
   position: fixed; 
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   height: 100vh;
   width: 65vw;
   background-color:var(--bg-color-200-95);
   border-radius: 2rem;
   border: solid 0.1rem var(--accent-color-400); 
-  
+  transform: translateX(+100%) translateY(0%);
  
   display: none; 
+
+  z-index: 200;
+}
+@supports (backdrop-filter: blur(1em)) {
+  .primary-navigation {
+   -webkit-backdrop-filter: blur(2em);
+    backdrop-filter: blur(2em);
+  }
 }
 
 
-.primary-navigation[data-visible="true"] {
+
+.primary-navigation[data-visible="true"]{
   display: block; 
+  animation: slide-in 0.35s ease-in-out forwards;
+
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
 
 .primary-navigation ul {
@@ -167,6 +195,18 @@ header {
   padding-left: 2rem;
   font-size: 1.5rem;
 }
+
+.fantasma {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+ .fantasma[data-visible="true"]{
+  display: block;
+ }
 
 .nav-link {
   padding: 1em 1rem;
