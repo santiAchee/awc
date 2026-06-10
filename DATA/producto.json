@@ -1,0 +1,10 @@
+[
+  { "id": 1, "marca": "ATK", "titulo": "Mouse ATK X1", "precio": 180000, "img": "img/Productos/portadaatkx1.jpg" },
+  { "id": 2, "marca": "LOGITECH", "titulo": "Mouse LOGITECH GPRO", "precio": 180000, "img": "img/Productos/portadagpro.jpg" },
+  { "id": 3, "marca": "LAMZU", "titulo": "Mouse Lamzu Atlantis", "precio": 180000, "img": "img/Productos/portadaatkx1.jpg" },
+  { "id": 4, "marca": "RAZER", "titulo": "Mouse Razer Viper V4", "precio": 180000, "img": "img/Productos/portadavv4.png" },
+  { "id": 5, "marca": "WOBKEY", "titulo": "Teclado Rainy 75", "precio": 180000, "img": "img/Productos/portadarainy75.jpg" },
+  { "id": 6, "marca": "ANGRYMIOU", "titulo": "Teclado AngryMiou", "precio": 180000, "img": "img/Productos/portadaangry.jpg" },
+  { "id": 7, "marca": "EPOMAKER", "titulo": "Teclado Epomaker f75", "precio": 180000, "img": "img/Productos/portadaepof75.jpg" },
+  { "id": 8, "marca": "LOGITECH", "titulo": "Teclado Logitech GPRO", "precio": 180000, "img": "img/Productos/tecladoGpro.jpg" }
+]

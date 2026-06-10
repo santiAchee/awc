@@ -314,38 +314,61 @@ header {
   transition: 0.3s;
 }
 
+.pagina{
+  background-color: red;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+ }
+
 
 
 /* Botones del catalogo */
-.btn-fill{
+
+
+.btn-agregar-carrito{
 font-family: var(--txt-base);
 font-size: 1rem;
 background-color: var(--accent-color-400);
 padding: 0.5rem 1rem;
 border-radius: 0.5rem;
 border: 0.2rem solid var(--accent-color-400);
+margin: 0 auto;
 }
-.btn-fill:hover{
+.btn-agregar-carrito:hover{
   box-shadow: 1rem;
   transition: 0.3s;
   cursor: pointer;
 }
 
-.btn-outline{
-font-family: var(--txt-base);
-font-size: 1rem;
-background-color: var(--accent-color-200);
-padding: 0.5rem 1rem;
-border-radius: 0.5rem;
-border: 0.2rem solid var(--accent-color-400);
+.btn-favorito{
+ background-image: url('../img/Icons/fav.svg');
+ background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  border-radius: 0.1rem;
 
+  display:flex;
+  width: 2rem;
+  height: 2rem;
+  
+
+
+  position:absolute;
+  top:-1rem;
+  right:-1rem;
+
+background-color: white;
+border-radius: 1.2rem;
+    border: none;
+  
 }
 
-.btn-outline:hover{
-  background-color: var(--accent-color-400);
-  transition: 0.3s;
-  cursor: pointer;
-  }
+  
 
   /* Quienes somos */
   .seleccion-quienes{
