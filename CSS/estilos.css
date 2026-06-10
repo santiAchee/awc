@@ -81,6 +81,7 @@ header {
 .contenedor-header {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 1rem;
   
@@ -99,21 +100,25 @@ header {
 
 
 }
+/* --------------------------------------------------------------- */
+/* Botones del header */
 
-
-.menu-btn {
+.home-btn,
+.menu-btn,
+.carrito-btn,
+.fav-btn
+ {
   background: none;
   border: none;
   padding: 0.5rem;
   width: 2rem;
   aspect-ratio: 1;
-  background-image: url('../img/Icons/btn-menu.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  z-index: 9999;
   cursor: pointer;
   border-radius: 0.1rem;
+  margin:1rem;
   
   transition:  transform 0.8s ease;
 
@@ -121,19 +126,65 @@ header {
 
 }
 
+
+
+/* Boton inicio */
+.home-btn{
+  background-image: url('../img/Icons/Home.svg');
+}
+.home-btn:hover{
+  background-image: url('../img/Icons/Home_fill.svg');
+}
+
+
+/* boton menu */
+.menu-btn{
+  background-image: url('../img/Icons/btn-menu.svg');
+}
 .menu-btn[aria-expanded="true"] {
-  background-image: url('../img/Icons/btn-menu-active.svg');
+  background-image: url('../img/Icons/close.svg');
 }
 
-.menu-btn:hover {
-  background-color: hsla(214, 89%, 36%, 0.12); 
-  transform: scale(1.08);                      
+
+/* Boton carrito */
+.carrito-btn{
+  background-image: url('../img/Icons/carrito.svg');
+}
+.carrito-btn:hover{
+  background-image: url('../img/Icons/carrito_fill.svg');
+  background-color:none;
+}
+.menu-btn[aria-expanded="true"] {
+  background-image: url('../img/Icons/close.svg');
 }
 
-.menu-btn:active {
+/* Boton fav */
+.fav-btn{
+  background-image: url('../img/Icons/Favorite.svg');
+}
+.fav-btn:hover{
+  background-image: url('../img/Icons/Favorite_fill.svg');
+  background-color:none;
+}
+.menu-btn[aria-expanded="true"] {
+  background-image: url('../img/Icons/close.svg');
+}
+
+
+.home-btn:hover,
+.menu-btn:hover,
+.carrito-btn:hover,
+.favorito-btn:hover {
+  background-color: none;      
+}
+
+.menu-btn:active
+ {
   transform: scale(0.95);                   
   background-color: var(--bg-color-200-95);
 }
+
+/* ------------------------------------------------------------*/
 
 .htech-logo {
   font-weight: 700;
