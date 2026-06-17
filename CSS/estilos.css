@@ -182,20 +182,17 @@ close-btn{
     background-size: cover;
     background-position: center;
     border: none;
-    width: 1.5rem;   
-    height: 1.5rem;
-    cursor: pointer;
-    float: right;    
-    transition: transform 0.2s ease;
+    filter: drop-shadow(0 0 4px var(--accent-color-400));
 }
 
 .fav-cerrar:hover,
 .cart-cerrar:hover {
-    transform: scale(1.1);
+    filter: drop-shadow(0 0 4px var(--accent-color-400));
 }
 
 /* ---------------contador------------------------------------ */
-.fav-count{
+.fav-count,
+.cart-count{
   position:absolute;
   font-size: 0.6rem;
   right: -1rem;
@@ -305,6 +302,7 @@ display:block;
   right: 0;
   bottom: 0;
   display: none;
+  z-index: 9997;
 }
  .fantasma[data-visible="true"]{
   display: block;
@@ -334,7 +332,8 @@ display:block;
 }
 
 
-.titulo-list{
+.titulo-list,
+.titulo-cart{
   font-family: var(--txt-heading);
   font-size: 2rem;
   padding:0.5rem 1rem;
@@ -383,6 +382,137 @@ box-shadow: 0px 8px 5px var(--accent-color-200);
   font-size: 1rem;
   
 }
+
+
+.cart-info h2{
+  font-family: var(--txt-base);
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.1;
+
+}
+.cart-info .cantidad {
+    font-family: var(--txt-base);
+    font-size: 0.9rem;
+    color: var(--accent-color-500);
+    margin: 0;
+}
+/*------------------ Controles del carrito ----------------------*/
+.cart-controles{
+  display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+/* cantidad */
+.cart-count{
+  font-weight: bold;
+    color: var(--text-color);
+    min-width: 1.2rem;
+    text-align: center;
+}
+
+.mas{
+  background-image:url(../img/Icons/add.svg)
+}
+.menos{
+  background-image:url(../img/Icons/remove.svg)
+}
+
+.mas,
+.menos{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.mas:hover{
+  background-image:url(../img/Icons/add_black.svg)
+}
+.menos:hover{
+  background-image:url(../img/Icons/remove_black.svg)
+}
+
+.cart-controles .mas,
+.cart-controles .menos {
+    background-color: var(--bg-color-200);
+    color: var(--text-color);
+    border: 0.1rem solid var(--accent-color-400);
+    border-radius: 0.25rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.cart-controles .mas:hover,
+.cart-controles .menos:hover {
+    background-color: var(--accent-color-400);
+    transform: scale(1.1);
+}
+
+
+.cart-controles .eliminar {
+    background-image: url('../img/Icons/close.svg');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: none;
+    width: 1.8rem;
+    height: 1.8rem;
+    cursor: pointer;
+    margin-left: auto;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cart-controles .eliminar:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 4px var(--accent-color-400));
+}
+
+
+
+.cart-footer{
+  
+  
+
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+
+  width: 100%;
+  height: 100vh;
+
+  margin: 0 auto;
+}
+.btn-finalizar {
+    
+    background-color: var(--accent-color-400);
+    color: var(--text-color);
+    border: none;
+    border-radius: 0.5rem;
+    font-family: var(--txt-base);
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    
+}
+.btn-finalizar:hover {
+    background-color: var(--accent-color-500);
+}
+
+
+
+
+
 /*------------------ Boton para cerrar menu y eliminar productos ----------------------*/
 .fav-cerrar,
 .cart-cerrar {

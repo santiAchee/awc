@@ -22,7 +22,7 @@
         <div class="controles">
                 <button class="home-btn" aria-label="Ir al inicio" aria-controls="primary-navigation"><span class="sr-only">Inicio</span></button>
                 
-                <button id="carrito" class="cart-btn" aria-label="Ingresar a carrito" aria-controls="primary-cart" aria-expanded="false"><span class="sr-only">Carrito de compras</span></button>
+                <button id="carrito" class="cart-btn" aria-label="Ingresar a carrito" aria-controls="primary-cart" aria-expanded="false"><span class="sr-only">Carrito de compras</span><span class="cart-count">0</span></button>
                 
                 <button id="lista-favoritos" class="fav-btn" aria-label="Ingresar a favoritos" aria-controls="primary-fav" aria-expanded="false">
                     <span class="sr-only">favoritos</span>
@@ -34,9 +34,15 @@
         </div>
         
     <aside class="mi-carrito primary-cart" id="primary-cart" data-visible="false">
-            <h1>Mi Carrito <button class="cart-cerrar"><span class="sr-only">Cerrar ventana</span></button></h1>
-            <ul class="cart-lista"></ul>
-        </aside>
+    <h1 class="titulo-cart">Mi Carrito <button class="cart-cerrar"><span class="sr-only">Cerrar ventana</span></button></h1>
+    
+    <ul class="cart-lista"></ul>
+    
+    <div class="cart-footer">
+        <h2 class="cart-total">Total de mi compra: $0</h2>
+        <button class="btn-finalizar">Finalizar compra</button>
+    </div>
+</aside>
 
         <aside class="mis-favoritos primary-fav" id="primary-fav" data-visible="false">
             <div class="header-list">
@@ -85,9 +91,9 @@
             <li><a href="./index.html" rel="noopener noreferrer">Inicio</a></li>
             <li><a href="#productos" rel="noopener noreferrer">Productos</a></li>
             <li><a href="./quienes.html" target="_blank" rel="noopener noreferrer">quienes somos</a></li>
-            <a class="contacto" href="https://wa.me/5491138081715" rel="nonpenner nonreferrer" target="_blank"></a>
-                <span class="sr-only">Contactanos a travez de WhatsApp</span>
-            </a>
+            <a class="contacto" href="https://wa.me/5491138081715" rel="noopener noreferrer" target="_blank">
+    <span class="sr-only">Contactanos a travez de WhatsApp</span>
+</a>
         </ul>
 
         <p class="txt-footer">Santiago Achenapure | Istea</p>

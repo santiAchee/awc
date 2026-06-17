@@ -7,8 +7,11 @@ const contenedorCatalogo = document.querySelector('.contenedor-productos');
   let productosHtech = [];
 
   //Variable lista fav
-let favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
+let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
+
+//variable para los elementos del carrito
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 //llamar a los elementos del DOM
 const contenedotCatalogo = document.querySelector('.contenedor-catalogo');
@@ -19,6 +22,24 @@ const ListaFavoritos = document.querySelector('.lista-favoritos');
 //contruir contador de Favoritos
 const favCount = document.querySelector('.fav-count');
 
+//para renderizar el carrito
+const ListaCarrito = document.querySelector('.cart-lista');
+
+
+
+// Contador para cuantos items hay en el carrito
+const cartCount = document.querySelector('.cart-count');
+
+
+// Mostrar el total de la compra
+const cartTotal = document.querySelector('.cart-total');
+
+
+
+
+
+
+
 //Carga produtos desde el .json
   async function cargarProductos() {
     try{
@@ -26,6 +47,7 @@ const favCount = document.querySelector('.fav-count');
         productosHtech = await res.json(); //similar a JSON.parse()
         renderizarCatalogo();
         renderizarFavoritos();
+        renderizarCarrito();
     }catch(error){
         console.error('error al cargar los productos', error);
     }
@@ -39,29 +61,46 @@ function renderizarCatalogo () {
 
 const catalogo = productosHtech.map(producto =>{
     const esFavorito = favoritos.includes(producto.id);
+    const esCarrito = carrito.some(item => item.id === producto.id)
     return `
-    <article class="card-producto">
-    <div class="pagina"></div>
+        <article class="card-producto">
+            <div class="pagina"></div>
             <img src="${producto.img}" alt="${producto.titulo}">
             <h3>${producto.marca}</h3>
             <h2>${producto.titulo}</h2>
             <p class="precio">$${producto.precio.toLocaleString('es-AR')}</p>
 
             <button class="btn-AddFavorito ${esFavorito ? 'active' : ''}" data-id="${producto.id}">
-                        <span class="sr-only">${esFavorito ? 'en favoritos' : 'Agregar a favoritos'}</span>
-                    </button>
-            <button class="btn-agregar-carrito">Agregar al carrito</button>
+                <span class="sr-only">${esFavorito ? 'en favoritos' : 'Agregar a favoritos'}</span>
+            </button>
+            
+            <button class="btn-agregar-carrito ${esCarrito ? 'active' : ''}" data-id="${producto.id}">${esCarrito ? 'En carrito' : 'Agregar al carrito'}</button>
             
         </article>
-    `}).join('');
+        `;
+    }).join('');
+    
     contenedorCatalogo.innerHTML = catalogo;
+
+    document.querySelectorAll('.btn-AddFavorito').forEach(btn => {
+        btn.addEventListener('click', toggleFavorito);
+    });
+
+    document.querySelectorAll('.btn-agregar-carrito').forEach(btn => {
+        btn.addEventListener('click', agregarAlCarrito);
+    });
+
 }
 
 contenedorCatalogo.addEventListener('click', (e) => {
     if (e.target.closest('.btn-AddFavorito')) {
-        toggleFavorito(e);
+        toggleFavorito({ target: btn });
     }
 });
+
+
+
+
 
 //togle favoritos
 function toggleFavorito(e) {
@@ -69,11 +108,11 @@ function toggleFavorito(e) {
     if (favoritos.includes(id)) {
     favoritos = favoritos.filter(favID => favID !== id);
     e.target.classList.remove('active');
-     e.target.innetHTML ='<span class="sr-only">Agregar a Favoritos<span/>';
+     e.target.innerHTML ='<span class="sr-only">Agregar a Favoritos</span>';
 } else {
     favoritos.push(id);
     e.target.classList.add('active');
-    e.target.innetHTML ='<span class="sr-only">En Favoritos<span/>';
+    e.target.innerHTML ='<span class="sr-only">En Favoritos<span/>';
 
 }
 localStorage.setItem('favoritos', JSON.stringify(favoritos));
@@ -122,6 +161,109 @@ if  (btn){
     renderizarCatalogo();
 }
 });
+
+//Carrito----------------------------------------------------------------
+//Agregar al carrito
+function agregarAlCarrito(e) {
+    const id = Number(e.target.dataset.id);
+    const existe = carrito.find(item => item.id === id);
+
+    if(existe){
+        return;
+    }else{
+        carrito.push({id, cantidad: 1})
+    }
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    renderizarCatalogo();
+    renderizarCarrito();
+
+};
+
+//renderizar el carrito
+function renderizarCarrito() {
+    ListaCarrito.innerHTML = '';
+    let total = 0;
+
+
+
+    if (carrito.length === 0) {
+        ListaCarrito.innerHTML =`
+        <p>Tu carrito está vacío</p>
+        `
+        cartCount.textContent = 0;
+        cartCount.classList.remove('active');
+        return;
+    }
+
+    carrito.forEach(item => {
+        const prod = productosHtech.find(producto => producto.id === item.id);
+        if (!prod) return;
+
+        const subtotal = prod.precio * item.cantidad;
+        total += subtotal;
+
+        const li = document.createElement('li');
+
+        li.className = 'item-cart';
+        li.innerHTML = `
+        <img src="${prod.img}" alt="Portada del producto${prod.titulo}">
+        <div>
+        <h2>${prod.titulo}</h2>
+        <h3>$${prod.precio.toLocaleString('es-AR')} x ${item.cantidad} = $${subtotal.toLocaleString('es-AR')}</h3>
+    
+        </div>
+
+        <div class="cart-controles">
+          <button class="menos" data-id="${item.id}">
+          <span class="sr-only">Restar -1</span>
+          </button>
+          <span>${item.cantidad}</span>
+          <button class="sumar" data-id="${item.id}">
+          <span class="sr-only">Sumar +1</span>
+          </button>
+          <button class="eliminar" data-id="${item.id}">
+          <span class="sr-only">Quitar item del carrito</span>
+          </button>
+        </div>
+    
+
+        `;
+        ListaCarrito.appendChild(li);
+
+    });
+
+    cartTotal.innerHTML= 'Total de mi compra: ' + ' $' + total.toLocaleString('es-AR');
+   
+    cartCount.classList.add('active');
+    cartCount.textContent = carrito.length;
+
+
+    //listeeners para los botones de control
+
+
+};
+
+
+function modificarCantidad(id, delta){
+const item = carrito.find(item => item.id === id);
+if(item){
+ item.cantidad = Math.max(1, item.cantidad + delta);
+ renderizarCarrito();
+
+};
+
+};
+
+
+
+
+
+
+
+
+
+
 
 
 document.addEventListener('DOMContentLoaded', async() => {
