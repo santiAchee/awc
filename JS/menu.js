@@ -39,18 +39,20 @@ navToggle.addEventListener("click", () => {
 
 
 //favoritos
-favToggle.addEventListener('click', () => {
-    const visibility = primaryFav.getAttribute('data-visible');
-if(visibility === 'false'){
-   primaryFav.setAttribute('data-visible', 'true');
-  CloseAll.setAttribute('data-visible', 'true');
-}else if(visibility === 'true'){
-primaryFav.setAttribute('data-visible', 'false');
-CloseAll.setAttribute('data-visible', 'false');
-
-}
-})
+if (favToggle) {
+    favToggle.addEventListener('click', () => {
+        const visibility = primaryFav.getAttribute('data-visible');
+        if (visibility === 'false') {
+            primaryFav.setAttribute('data-visible', 'true');
+            CloseAll.setAttribute('data-visible', 'true');
+        } else if (visibility === 'true') {
+            primaryFav.setAttribute('data-visible', 'false');
+            CloseAll.setAttribute('data-visible', 'false');
+        }
+    });
+};
 //cerrar favoritos
+if(closeFav){
 closeFav.addEventListener('click', () => {
     const visibility = primaryFav.getAttribute('data-visible');
     
@@ -59,9 +61,11 @@ closeFav.addEventListener('click', () => {
         CloseAll.setAttribute('data-visible', 'false');
     }
 });
+};
 
 
 ///carrito
+if(cartToggle){
 cartToggle.addEventListener('click', () => {
     const visibility = primaryCart.getAttribute('data-visible');
     
@@ -73,8 +77,10 @@ cartToggle.addEventListener('click', () => {
         CloseAll.setAttribute('data-visible', 'false');
     }
 });
+};
 
 //cerrar carrito
+if(closeCart){
 closeCart.addEventListener('click', () => {
     const visibility = primaryCart.getAttribute('data-visible');
     
@@ -83,6 +89,7 @@ closeCart.addEventListener('click', () => {
         CloseAll.setAttribute('data-visible', 'false');
     }
 });
+};
 
 
 //cerrar todo con el fantasma

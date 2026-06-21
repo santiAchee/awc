@@ -56,6 +56,7 @@ const cartTotal = document.querySelector('.cart-total');
 //renderizar catalogo
 
 function renderizarCatalogo () {
+    if(!contenedorCatalogo) return;
     contenedorCatalogo.innerHTML = '';
 
 
@@ -63,18 +64,20 @@ const catalogo = productosHtech.map(producto =>{
     const esFavorito = favoritos.includes(producto.id);
     const esCarrito = carrito.some(item => item.id === producto.id)
     return `
-        <article class="card-producto">
+        <article class="card-producto" data-id="${producto.id}">
             <div class="pagina"></div>
             <img src="${producto.img}" alt="${producto.titulo}">
             <h3>${producto.marca}</h3>
             <h2>${producto.titulo}</h2>
             <p class="precio">$${producto.precio.toLocaleString('es-AR')}</p>
 
-            <button class="btn-AddFavorito ${esFavorito ? 'active' : ''}" data-id="${producto.id}">
+            <button class="btn btn-AddFavorito ${esFavorito ? 'active' : ''}" data-id="${producto.id}">
                 <span class="sr-only">${esFavorito ? 'en favoritos' : 'Agregar a favoritos'}</span>
             </button>
             
-            <button class="btn-agregar-carrito ${esCarrito ? 'active' : ''}" data-id="${producto.id}">${esCarrito ? 'En carrito' : 'Agregar al carrito'}</button>
+            <button class="btn btn-agregar-carrito ${esCarrito ? 'active' : ''}" data-id="${producto.id}">${esCarrito ? 'En carrito' : 'Agregar al carrito'}</button>
+            
+            <a class="sr-only" href="producto.html?id=${producto.id}">Ver detalle del producto.</a>
             
         </article>
         `;
@@ -90,13 +93,27 @@ const catalogo = productosHtech.map(producto =>{
         btn.addEventListener('click', agregarAlCarrito);
     });
 
-}
+};
 
-contenedorCatalogo.addEventListener('click', (e) => {
-    if (e.target.closest('.btn-AddFavorito')) {
-        toggleFavorito({ target: btn });
-    }
-});
+//listener para el articulo
+if(contenedorCatalogo){
+  contenedorCatalogo.addEventListener('click', (e) => {
+    const article = e.target.closest('article');
+    if (!article) return;
+    if (e.target.closest('.btn')) return;
+
+    window.location.href = `producto.html?id=${article.dataset.id}`;
+  });
+};
+
+
+if (contenedorCatalogo) {
+    contenedorCatalogo.addEventListener('click', (e) => {
+        if (e.target.closest('.btn-AddFavorito')) {
+            toggleFavorito(e);
+        }
+    });
+}
 
 
 
@@ -121,6 +138,7 @@ renderizarFavoritos();
 
 //Renderizar favoritos
 function renderizarFavoritos() {
+    if (!ListaFavoritos) return;
     ListaFavoritos.innerHTML = '';
 
     if (favoritos.length === 0) {
@@ -150,6 +168,7 @@ favCount.textContent = favoritos.length;
 favCount.classList.add('active');
 }
 
+if(ListaFavoritos){
 ListaFavoritos.addEventListener('click', (e) => {
 const btn = e.target.closest('.remove-item');
 if  (btn){
@@ -159,12 +178,15 @@ if  (btn){
     
     renderizarFavoritos();
     renderizarCatalogo();
+    renderizarDetalle();
 }
 });
+};
 
 //Carrito----------------------------------------------------------------
 //Agregar al carrito
 function agregarAlCarrito(e) {
+
     const id = Number(e.target.dataset.id);
     const existe = carrito.find(item => item.id === id);
 
@@ -182,6 +204,7 @@ function agregarAlCarrito(e) {
 
 //renderizar el carrito
 function renderizarCarrito() {
+    if (!ListaCarrito) return;
     ListaCarrito.innerHTML = '';
     let total = 0;
 
@@ -195,6 +218,15 @@ function renderizarCarrito() {
         cartCount.classList.remove('active');
         return;
     }
+
+//Contador
+    cartCount.classList.add('active');
+
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    cartCount.textContent = totalItems;
+
+
+
 
     carrito.forEach(item => {
         const prod = productosHtech.find(producto => producto.id === item.id);
@@ -219,7 +251,7 @@ function renderizarCarrito() {
           <span class="sr-only">Restar -1</span>
           </button>
           <span>${item.cantidad}</span>
-          <button class="sumar" data-id="${item.id}">
+          <button class="mas" data-id="${item.id}">
           <span class="sr-only">Sumar +1</span>
           </button>
           <button class="eliminar" data-id="${item.id}">
@@ -240,6 +272,20 @@ function renderizarCarrito() {
 
 
     //listeeners para los botones de control
+    //suma
+    ListaCarrito.querySelectorAll('.mas').forEach(btn => {
+      btn.addEventListener('click', () => modificarCantidad(Number(btn.dataset.id), 1));
+    });
+
+    //resta
+    ListaCarrito.querySelectorAll('.menos').forEach(btn => {
+      btn.addEventListener('click', () => modificarCantidad(Number(btn.dataset.id), -1));
+    });
+    //Eliminar
+    ListaCarrito.querySelectorAll('.eliminar').forEach(btn => {
+      btn.addEventListener('click', () => eliminarDelCarrito(Number(btn.dataset.id)));
+    });
+
 
 
 };
@@ -249,12 +295,116 @@ function modificarCantidad(id, delta){
 const item = carrito.find(item => item.id === id);
 if(item){
  item.cantidad = Math.max(1, item.cantidad + delta);
+ localStorage.setItem('carrito', JSON.stringify(carrito));
  renderizarCarrito();
 
-};
 
 };
 
+};
+
+function eliminarDelCarrito(id){
+  carrito = carrito.filter(item => item.id !== id);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  renderizarCatalogo();
+  renderizarCarrito();
+  renderizarDetalle();
+}
+
+
+//ver detalle
+
+function renderizarDetalle () {
+    const params = new URLSearchParams(window.location.search);
+    const id = Number(params.get('id'));
+    const prod = productosHtech.find(producto => producto.id === id);
+    if(!prod) return;
+
+    const esFavorito = favoritos.includes(prod.id);
+    const enCarrito = carrito.some(item => item.id === prod.id);
+    const contenedor = document.querySelector('.detalle-producto');
+    if(!contenedor) return;
+
+    contenedor.innerHTML = `
+        <div class="contenedor-galeria">
+            <img src="${prod.img}" alt="Vista superior de ${prod.titulo}">
+            <img src="${prod.img2}" alt="Vista lateral de ${prod.titulo}">
+            <img src="${prod.img3}" alt="Otra vista de ${prod.titulo}">
+        </div>
+
+        <div class="producto-info">
+            <span class="producto-marca">${prod.marca}</span>
+            <h1 class="producto-nombre">${prod.titulo}</h1>
+            <p class="producto-descripcion">${prod.descripcion}</p>
+            <h3 class="producto-precio">Precio: $${prod.precio.toLocaleString('es-AR')}</h3>
+            
+            <div class="producto-acciones">
+                <button class="btn-fill btn-agregar-carrito btn-cart-detalle ${enCarrito ? 'active' : ''}">
+                    ${enCarrito ? 'En carrito' : 'Agregar al carrito'}
+                </button>
+                
+                <button class="btn-fill btn-agregar-carrito btn-fav-detalle ${esFavorito ? 'active' : ''}">
+                    ${esFavorito ? 'En favoritos' : 'Agregar a favoritos'}
+                </button>
+            </div>
+        </div>
+
+        <div class="producto-specs">
+            <h3 class="specs-titulo">Especificaciones técnicas</h3>
+            <ul class="specs-lista">
+                <li><span class="spec-label">Marca</span>        <span>${prod.marca}</span></li>
+                <li><span class="spec-label">Modelo</span>       <span>${prod.titulo}</span></li>
+                <li><span class="spec-label">${prod.tipoTecnologia}</span>       <span>${prod.tecnologia}</span></li>
+                <li><span class="spec-label">Interruptores</span><span>${prod.interruptores}</span></li>
+                <li><span class="spec-label">Autonomía</span>    <span>${prod.autonomia}</span></li>
+                <li><span class="spec-label">Peso</span>         <span>${prod.peso}</span></li>
+            </ul>
+        </div>
+    `;
+
+    const btnCart = contenedor.querySelector('.btn-cart-detalle');
+    const btnFav = contenedor.querySelector('.btn-fav-detalle');
+    const panelCart = document.querySelector('.primary-cart');
+    const fantasma = document.querySelector('.fantasma');
+
+
+   
+
+//boton de agregar favoritos
+    if (btnCart) {
+        btnCart.addEventListener('click', () => {
+            const existe = carrito.find(item => item.id === prod.id);
+            if (!existe) {
+                carrito.push({id: prod.id, cantidad: 1});
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                renderizarCarrito(); 
+                
+                btnCart.classList.add('active');
+                btnCart.textContent = 'En carrito';
+
+                // Abrir panel
+                if(panelCart) panelCart.setAttribute('data-visible', 'true');
+                if(fantasma) fantasma.setAttribute('data-visible', 'true');
+            };
+        });
+    };
+
+    if (btnFav) {
+        btnFav.addEventListener('click', () => {
+            if (favoritos.includes(prod.id)) {
+                favoritos = favoritos.filter(favID => favID !== prod.id);
+                btnFav.classList.remove('active');
+                btnFav.textContent = 'Agregar a favoritos';
+            } else {
+                favoritos.push(prod.id);
+                btnFav.classList.add('active');
+                btnFav.textContent = 'En favoritos';
+            }
+            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+            renderizarFavoritos(); 
+        });
+    };
+};
 
 
 
@@ -268,4 +418,8 @@ if(item){
 
 document.addEventListener('DOMContentLoaded', async() => {
    await cargarProductos();
+   //carga solamente si .detalle-producto existe
+   if(document.querySelector(".detalle-producto")) {
+    renderizarDetalle();
+   }
 });

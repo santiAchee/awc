@@ -5,19 +5,52 @@
     <meta   name="color-scheme" content="Light dark">
     <title>Aplicaiones Web Cliente</title>
     <link rel="stylesheet" href="CSS/estilos.css">
-    <script src="../js/menu.js" defer></script>
+    <script src="JS/menu.js" defer></script>
+    <script src="JS/Catalogo.js" defer></script>
 </head>  
 <body > 
      <div class="fantasma"></div>
    
-    <header>
+     <header>
         <div class="contenedor-header">
-        <h1 class="htech-logo">Htech</h1>
+        <h1 class="htech-logo" href=#index.html>Htech</h1>
         
-        <button class="menu-btn" aria-label="Ingresar al menu principal" aria-controls="primary-navigation" aria-expanded="false"> <span class="sr-only">Menu principal</span></button>
 
+        <div class="controles">
+                
+                
+                <button id="lista-favoritos" class="fav-btn" aria-label="Ingresar a favoritos" aria-controls="primary-fav" aria-expanded="false">
+                    <span class="sr-only">favoritos</span>
+                    <span id="fav-count" class="fav-count">0</span>
+                </button>
 
+                <button id="carrito" class="cart-btn" aria-label="Ingresar a carrito" aria-controls="primary-cart" aria-expanded="false">
+                    <span class="sr-only">Carrito de compras</span>
+                    <span class="cart-count">0</span>
+                </button>
 
+                <button id="menu-principal" class="menu-btn" aria-label="Ingresar al menu principal" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only">Menu principal</span></button>
+            </div>
+        </div>
+        
+    <aside class="mi-carrito primary-cart" id="primary-cart" data-visible="false">
+    <h1 class="titulo-cart">Mi Carrito <button class="cart-cerrar"><span class="sr-only">Cerrar ventana</span></button></h1>
+    
+    <ul class="cart-lista"></ul>
+    
+    <div class="cart-footer">
+        <h2 class="cart-total">Total de mi compra: $0</h2>
+        <button class="btn-finalizar">Finalizar compra</button>
+    </div>
+</aside>
+
+        <aside class="mis-favoritos primary-fav" id="primary-fav" data-visible="false">
+            <div class="header-list">
+                <h1 class="titulo-list">Mis favoritos <button class="fav-cerrar"><span class="sr-only">Cerrar ventana</span></button></h1>
+            </div>
+            <ul class="lista-favoritos"></ul>
+        </aside>       
+                    
 
         <nav id="primary-navigation" data-visible="false" class="primary-navigation">  
             <ul>
@@ -33,43 +66,10 @@
     <main>
         <section class="seleccion-producto">
 
-            <div class="producto-principal">
-
-                <div class="contenedor-galeria">
-                    <img src="./img/pro-x-superlight-2c-mouse-top-angle-pink-gallery-1.webp" alt="Vista superior">
-                    <img src="./img/pro-x-superlight-2c-mouse-bottom-angle-pink-gallery-2.webp" alt="Vista inferior">
-                    <img src="./img/pro-x-superlight-2c-mouse-in-the-box-pink-gallery-3.webp" alt="Caja incluida">
-                </div>
-
-                <div class="producto-info">
-                    <span class="producto-marca">Logitech</span>
-                    <h1 class="producto-nombre">PRO X SUPERLIGHT 2C</h1>
-                    <p class="producto-descripcion">
-                        El PRO X SUPERLIGHT 2c es un mouse compacto de 51 g que cuenta con el avanzado sensor HERO 2, robusta tecnología inalámbrica LIGHTSPEED e interruptores LIGHTFORCE. Además, ofrece hasta 95 horas de autonomía.
-                    </p>
-                    <h3 class="producto-precio">Precio: $180.000</h3>
-                    <div class="producto-acciones">
-                        <button class="btn-fill">Agregar al carrito</button>
-                        <button class="btn-outline">&#9825; Favorito</button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="producto-specs">
-                <h3 class="specs-titulo">Especificaciones técnicas</h3>
-                <ul class="specs-lista">
-                    <li><span class="spec-label">Marca</span>        <span>Logitech</span></li>
-                    <li><span class="spec-label">Modelo</span>       <span>PRO X SUPERLIGHT 2C</span></li>
-                    <li><span class="spec-label">Sensor</span>       <span>HERO 2</span></li>
-                    <li><span class="spec-label">Interruptores</span><span>LIGHTFORCE</span></li>
-                    <li><span class="spec-label">Autonomía</span>    <span>95 horas</span></li>
-                    <li><span class="spec-label">Peso</span>         <span>51 g</span></li>
-                    <li><span class="spec-label">Resolución</span>   <span>100 - 44.000 DPI</span></li>
-                </ul>
-            </div>
-
-        </section>
+            <div class="detalle-producto">
+                
+            </div> </section>
+    </main>
     </main>
     <footer>
         <div class="contenedor-footer">
