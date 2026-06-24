@@ -77,6 +77,10 @@ overflow: hidden;
 header {
   background-color: var(--txt-heading);
 }
+.htech-logo a {
+    color: inherit;
+    text-decoration: none;
+}
 
 .contenedor-header {
   width: 100%;
@@ -174,17 +178,26 @@ close-btn{
   background-image: url('../img/Icons/close.svg');
 }
 
+.menu-cerrar,
 .fav-cerrar,
 .cart-cerrar {
+   position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
     background-image: url('../img/Icons/close.svg');
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
     border: none;
-    filter: drop-shadow(0 0 4px var(--accent-color-400));
+    transition: transform 0.2s ease;
 }
 
+.menu-cerrar:hover,
 .fav-cerrar:hover,
 .cart-cerrar:hover {
     filter: drop-shadow(0 0 4px var(--accent-color-400));
@@ -246,7 +259,7 @@ display:block;
   right: 0;
   bottom: 0;
   height: 100vh;
-  width: 65vw;
+  width: 75vw;
   background-color:var(--bg-color-200-95);
   border-radius: 2rem;
   border: solid 0.1rem var(--accent-color-400); 
@@ -360,9 +373,22 @@ gap: 1rem;
 padding: 1rem;
 
 border: solid 0.1rem var(--accent-color-400);
-border-radius: 0.5rem
+border-radius: 0.5rem;
+
+font-size: 1rem;
+white-space:nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 
 }
+
+.lista-favoritos li h2,
+.cart-lista li h2,
+.lista-favoritos li h3,
+.cart-lista li h3{
+  font-size: 1rem;
+}
+
 
 .lista-favoritos li:hover,
 .cart-lista li:hover{
@@ -405,6 +431,12 @@ box-shadow: 0px 8px 5px var(--accent-color-200);
     align-items: center;
     gap: 0.8rem;
     margin-top: 0.2rem;
+}
+
+.cart-controles .mas, 
+.cart-controles .menos, 
+.cart-controles .eliminar {
+  width: 1rem;
 }
 
 /* cantidad */
@@ -522,8 +554,7 @@ box-shadow: 0px 8px 5px var(--accent-color-200);
   right: 1.5rem;
 }
 
-.fav-cerrar,
-.cart-cerrar,
+
 .remove-item {
   background-image: url('../img/Icons/close.svg');
   background-color: transparent;
@@ -540,12 +571,11 @@ box-shadow: 0px 8px 5px var(--accent-color-200);
   margin-left: auto;
 }
 
-.fav-cerrar:hover,
-.cart-cerrar:hover,
+
 .remove-item:hover {
   transform: scale(1.1);
   background-color: var(--bg-color-200-95);
-  border: solid 0.1rem var(--accent-color-400);
+  border: none;
   border-radius: 100%;
 }
 
@@ -808,6 +838,16 @@ background: var(--bg-color-400);
     background-color: transparent;
 }
 
+
+.btn-fill:hover,
+.btn-outline:hover
+   {
+cursor:pointer;
+scale: 1.01;
+
+}
+    
+
 /*---------------------- especificaciones de producto -------------*/
 .producto-specs{
   border: 0.1rem solid var(--accent-color-400);
@@ -984,6 +1024,29 @@ margin: 0 auto;
   .contenedor-productos {
     grid-template-columns: repeat(2, 1fr);
   }
+/* ----------------------media query menu ----------------------*/
+.primary-navigation,
+.primary-fav,
+.primary-cart {
+  width: 40vw; 
+  
+}
+
+.cart-controles{
+  flex:1;
+}
+
+.cart-controles .eliminar{
+margin-left: auto;
+}
+
+.cart-lista li h2,
+.fav-lista li h2,
+.cart-lista li h3,
+.fav-lista li h3{
+  font-size: 1.2rem;
+}
+
   /*---------------------- media query producto ------------------*/
 
   .seleccion-producto{
@@ -1067,6 +1130,15 @@ margin: 0 auto;
   .producto-specs{
     width: 100%;
   }
+ /*---------------------- menu desplegable ----------------------*/
+
+  .cart-lista li h2,
+.fav-lista li h2,
+.cart-lista li h3,
+.fav-lista li h3{
+  font-size: 1.5rem;
+}
+
 
 
 
