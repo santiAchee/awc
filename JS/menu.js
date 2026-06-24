@@ -1,6 +1,7 @@
 //menu principal
 const primaryNav = document.querySelector(".primary-navigation");
 const navToggle = document.querySelector(".menu-btn");
+const closeMenu = document.querySelector('.menu-cerrar');
 
 //capa oscura
 const CloseAll = document.querySelector(".fantasma");
@@ -35,6 +36,18 @@ navToggle.addEventListener("click", () => {
     }
 
 });
+//cerrar menu
+if (closeMenu) {
+    closeMenu.addEventListener('click', () => {
+        const visibility = primaryNav.getAttribute('data-visible');
+        
+        if (visibility === 'true') {
+            primaryNav.setAttribute('data-visible', 'false');
+            navToggle.setAttribute('aria-expanded', 'false');
+            CloseAll.setAttribute('data-visible', 'false');
+        }
+    });
+}
 
 
 
