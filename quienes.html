@@ -12,16 +12,49 @@
     
     
     
-    <header>
+   <header>
         <div class="contenedor-header">
-        <h1 class="htech-logo">Htech</h1>
+        <h1 class="htech-logo"><a href="index.html">Htech</a></h1>
         
-        <button class="menu-btn" aria-label="Ingresar al menu principal" aria-controls="primary-navigation" aria-expanded="false"> <span class="sr-only">Menu principal</span></button>
 
+        <div class="controles">
+                
+                
+                <button id="lista-favoritos" class="fav-btn" aria-label="Ingresar a favoritos" aria-controls="primary-fav" aria-expanded="false">
+                    <span class="sr-only">favoritos</span>
+                    <span id="fav-count" class="fav-count">0</span>
+                </button>
 
+                <button id="carrito" class="cart-btn" aria-label="Ingresar a carrito" aria-controls="primary-cart" aria-expanded="false">
+                    <span class="sr-only">Carrito de compras</span>
+                    <span class="cart-count">0</span>
+                </button>
 
+                <button id="menu-principal" class="menu-btn" aria-label="Ingresar al menu principal" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only">Menu principal</span></button>
+            </div>
+        </div>
+        
+    <aside class="mi-carrito primary-cart" id="primary-cart" data-visible="false">
+    <h1 class="titulo-cart">Mi Carrito <button class="cart-cerrar"><span class="sr-only">Cerrar ventana</span></button></h1>
+    
+    <ul class="cart-lista"></ul>
+    
+    <div class="cart-footer">
+        <h2 class="cart-total">Total de mi compra: $0</h2>
+        <button class="btn-finalizar">Finalizar compra</button>
+    </div>
+</aside>
 
-        <nav id="primary-navigation" data-visible="false" class="primary-navigation">  
+        <aside class="mis-favoritos primary-fav" id="primary-fav" data-visible="false">
+            <div class="header-list">
+                <h1 class="titulo-list">Mis favoritos <button class="fav-cerrar"><span class="sr-only">Cerrar ventana</span></button></h1>
+            </div>
+            <ul class="lista-favoritos"></ul>
+        </aside>       
+                    
+
+        <nav id="primary-navigation" data-visible="false" class="primary-navigation"> 
+            <button class="menu-cerrar"><span class="sr-only">Cerrar menu</span></button> 
             <ul>
                 <li class="nav-link" rel="noopener noreferrer"><a href="index.html"><span class="htech-nav-label">Inicio</span></a></li>
                 <li class="nav-link" rel="noopener noreferrer"><a href="#"><span class="htech-nav-label">carrito</span></a></li>
