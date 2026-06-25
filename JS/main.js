@@ -38,19 +38,26 @@ const cartTotal = document.querySelector('.cart-total');
 
 
 
+//cargar datos desde AIRTABLE
+const AIRTABLE_BASE_ID = 'appuplWoRdAqZs068';//url
+const AIRTABLE_PAT = 'patMqJd26dJX08cMS.4aa35c8de7427e5fc85b872675233d76421c3a2fec5c4341770881c02008952c';//token
 
-
-//Carga produtos desde el .json
-  async function cargarProductos() {
+async function cargarProductos() {
     try{
-        const res = await fetch('DATA/producto.json')
-        productosHtech = await res.json(); //similar a JSON.parse()
+        const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/productos?sort[0][field]=id&sort[0][direction]=asc`, {
+            headers: {Authorization: `Bearer ${AIRTABLE_PAT}`}
+            });
+        
+        const data = await res.json();   
+        productosHtech = data.records.map(r => r.fields);
+
+
         renderizarCatalogo();
         renderizarFavoritos();
         renderizarCarrito();
     }catch(error){
         console.error('error al cargar los productos', error);
-    }
+    };
 }
 
 //renderizar catalogo
@@ -107,13 +114,8 @@ if(contenedorCatalogo){
 };
 
 
-if (contenedorCatalogo) {
-    contenedorCatalogo.addEventListener('click', (e) => {
-        if (e.target.closest('.btn-AddFavorito')) {
-            toggleFavorito(e);
-        }
-    });
-}
+
+
 
 
 
@@ -129,7 +131,7 @@ function toggleFavorito(e) {
 } else {
     favoritos.push(id);
     e.target.classList.add('active');
-    e.target.innerHTML ='<span class="sr-only">En Favoritos<span/>';
+    e.target.innerHTML ='<span class="sr-only">En Favoritos</span>';
 
 }
 localStorage.setItem('favoritos', JSON.stringify(favoritos));
