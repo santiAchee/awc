@@ -89,6 +89,8 @@ cartToggle.addEventListener('click', () => {
         primaryCart.setAttribute('data-visible', 'false');
         CloseAll.setAttribute('data-visible', 'false');
     }
+
+    document.body.classList.add('no-scroll');//pausar el scroll de la pagina
 });
 };
 
@@ -99,8 +101,11 @@ closeCart.addEventListener('click', () => {
     
     if (visibility === 'true') {
         primaryCart.setAttribute('data-visible', 'false');
-        CloseAll.setAttribute('data-visible', 'false');
+        if(CloseAll) {
+                CloseAll.setAttribute('data-visible', 'false');
+        }
     }
+    document.body.classList.remove('no-scroll');//volver a poner el scroll de la pagina
 });
 };
 
@@ -118,6 +123,8 @@ CloseAll.addEventListener('click', () => {
         
         navToggle.setAttribute('aria-expanded', 'false');
         CloseAll.setAttribute('data-visible', 'false');
+
+        document.body.classList.remove('no-scroll');//volver a poner el scroll de la pagina cerrando desde el .fantasma
     }
 });
 

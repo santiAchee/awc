@@ -384,9 +384,6 @@ function renderizarDetalle () {
                 btnCart.classList.add('active');
                 btnCart.textContent = 'En carrito';
 
-                // Abrir panel
-                if(panelCart) panelCart.setAttribute('data-visible', 'true');
-                if(fantasma) fantasma.setAttribute('data-visible', 'true');
             };
         });
     };
