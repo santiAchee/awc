@@ -495,7 +495,7 @@ box-shadow: 0px 8px 5px var(--accent-color-200);
 
 
 .cart-controles .eliminar {
-    background-image: url('../img/Icons/close.svg');
+    background-image: url('../img/Icons/delete.svg');
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
@@ -572,9 +572,9 @@ body.no-scroll {
   right: 1.5rem;
 }
 
-
+/* eliminar de favoritos */
 .remove-item {
-  background-image: url('../img/Icons/close.svg');
+  background-image: url('../img/Icons/delete.svg');
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
