@@ -13,9 +13,6 @@ let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 //variable para los elementos del carrito
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-//llamar a los elementos del DOM
-const contenedotCatalogo = document.querySelector('.contenedor-catalogo');
-
 //Construir la lista de favoritos
 const ListaFavoritos = document.querySelector('.lista-favoritos');
 
